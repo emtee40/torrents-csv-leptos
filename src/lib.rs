@@ -22,10 +22,11 @@ pub fn App(cx: Scope) -> impl IntoView {
     <Link rel="shortcut icon" type_="image/ico" href="/favicon.ico"/>
     <Meta name="description" content="Torrents-CSV-Leptos"/>
     <Meta name="viewport" content="viewport-fit=cover"/>
-    <Script src="//cdn.jsdelivr.net/npm/eruda"/>
-    <Script>
-      eruda.init();
-    </Script>
+    // Uncomment this for testing. Dont know another good way
+    // <Script src="
+    // <Script>
+    // eruda.init();
+    // </Script>
 
     // adding `set_is_routing` causes the router to wait for async data to load on new pages
     <Router set_is_routing>
