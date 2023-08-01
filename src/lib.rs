@@ -15,7 +15,9 @@ mod utils;
 #[component]
 pub fn App(cx: Scope) -> impl IntoView {
   provide_meta_context(cx);
-  let (_is_routing, set_is_routing) = create_signal(cx, false);
+  let (is_routing, set_is_routing) = create_signal(cx, false);
+
+  provide_context(cx, is_routing);
 
   view! { cx,
     <Stylesheet id="leptos" href="/pkg/tcl.css"/>

@@ -1,10 +1,12 @@
-use crate::utils::HERETIC_URL;
+use crate::{ui::components::common::Spinner, utils::HERETIC_URL};
 use leptos::*;
 use leptos_heroicons::size_24::outline::{CircleStack, MagnifyingGlass};
 use leptos_router::*;
 
 #[component]
 pub fn TopNav(cx: Scope) -> impl IntoView {
+  let is_routing = use_context::<ReadSignal<bool>>(cx).expect("Missing is_routing");
+
   view! { cx,
     <div class="navbar bg-base-100 shadow-xl">
       <div class="flex-1">
@@ -25,9 +27,21 @@ pub fn TopNav(cx: Scope) -> impl IntoView {
                 placeholder="Search..."
                 class="input input-bordered w-24 md:w-auto join-item"
               />
-              <button type="submit" class="btn btn-square join-item">
-                <MagnifyingGlass class="w-8 h-8 join-item"/>
-              </button>
+              <Show
+                when=is_routing
+                fallback=|cx| {
+                    view! { cx,
+                      <button type="submit" class="btn btn-square join-item">
+                        <MagnifyingGlass class="w-5 h-5 join-item"/>
+                      </button>
+                    }
+                }
+              >
+
+                <button disabled class="btn btn-square join-item">
+                  <Spinner/>
+                </button>
+              </Show>
             </div>
           </div>
         </Form>

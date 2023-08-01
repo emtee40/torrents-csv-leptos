@@ -1,5 +1,6 @@
 use crate::{
   api::search::search,
+  ui::components::common::Spinner,
   utils::{magnet_link, pretty_date, pretty_num, SearchQuery, Torrent},
 };
 use human_bytes::human_bytes;
@@ -33,8 +34,8 @@ pub fn SearchActivity(cx: Scope) -> impl IntoView {
 
   view! { cx,
     <main class="container mx-auto mt-6 px-4">
-      <Suspense fallback=|| {
-          view! { cx, "Loading..." }
+      <Suspense fallback=move || {
+          view! { cx, <Spinner/> }
       }>
         {move || {
             torrents
