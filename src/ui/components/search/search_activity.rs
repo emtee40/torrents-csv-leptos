@@ -32,7 +32,7 @@ pub fn SearchActivity(cx: Scope) -> impl IntoView {
   let err_msg = " Error loading.";
 
   view! { cx,
-    <main class="container mx-auto mt-6">
+    <main class="container mx-auto mt-6 px-4">
       <Suspense fallback=|| {
           view! { cx, "Loading..." }
       }>
@@ -109,7 +109,7 @@ fn TorrentListing(cx: Scope, torrent: Torrent) -> impl IntoView {
   view! { cx,
     <div class="card card-compact shadow-xl bg-base-100 mb-3">
       <div class="card-body">
-        <a href=magnet class="link card-title">
+        <a href=magnet class="link card-title break-all">
           {torrent.name}
         </a>
         <div class="flex justify-between text-lg">

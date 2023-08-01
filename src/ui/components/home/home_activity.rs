@@ -7,7 +7,7 @@ use leptos::*;
 #[component]
 pub fn HomeActivity(cx: Scope) -> impl IntoView {
   view! { cx,
-    <main class="container mx-auto mt-6">
+    <main class="container mx-auto mt-6 px-4">
       <IntroText/>
     </main>
   }

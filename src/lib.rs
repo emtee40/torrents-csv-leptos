@@ -21,7 +21,7 @@ pub fn App(cx: Scope) -> impl IntoView {
     <Stylesheet id="leptos" href="/pkg/tcl.css"/>
     <Link rel="shortcut icon" type_="image/ico" href="/favicon.ico"/>
     <Meta name="description" content="Torrents-CSV-Leptos"/>
-    <Meta name="viewport" content="viewport-fit=cover"/>
+    <Meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     // Uncomment this for testing. Dont know another good way
     // <Script src="
     // <Script>
