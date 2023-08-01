@@ -11,8 +11,8 @@ fn endpoint() -> String {
   let hostname = location.hostname().unwrap();
   let port = location.port().unwrap();
 
-  // If the port ends in 1237, its testing, and you need to use the 8902 port for API calls
-  if port == "1237" {
+  // If the port ends in 3000, its testing, and you need to use the 8902 port for API calls
+  if port == "3000" {
     format!("http://{hostname}:8902")
   } else {
     location.origin().unwrap()

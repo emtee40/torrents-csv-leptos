@@ -5,7 +5,7 @@ use crate::{
 use human_bytes::human_bytes;
 use leptos::*;
 use leptos_heroicons::size_24::outline::{ArrowDownTray, Calendar, CircleStack};
-use leptos_router::use_query_map;
+use leptos_router::{use_query_map, A};
 
 #[component]
 pub fn SearchActivity(cx: Scope) -> impl IntoView {
@@ -44,11 +44,35 @@ pub fn SearchActivity(cx: Scope) -> impl IntoView {
                         view! { cx, <div>{err_msg}</div> }
                     }
                     Some(torrents) => {
+                        if !torrents.is_empty() {
 
-                        view! { cx,
-                          <div>
-                            <TorrentListings torrents=torrents.into()/>
-                          </div>
+                            view! { cx,
+                              <div>
+                                <TorrentListings torrents=torrents.into()/>
+                                <div class="join grid grid-cols-2">
+                                  <Show
+                                    when=move || { page() > 1 }
+                                    fallback=|_cx| view! { _cx, "" }
+                                  >
+                                    <A
+                                      class="join-item btn btn-outline"
+                                      href=move || { format!("?q={}&page={}", q(), page() - 1) }
+                                    >
+                                      "Prev"
+                                    </A>
+                                  </Show>
+                                  <A
+                                    class="join-item btn btn-outline"
+                                    href=move || { format!("?q={}&page={}", q(), page() + 1) }
+                                  >
+                                    "Next"
+                                  </A>
+                                </div>
+                              </div>
+                            }
+                        } else {
+
+                            view! { cx, <div class="text-lg">"No results."</div> }
                         }
                     }
                 })
@@ -61,7 +85,6 @@ pub fn SearchActivity(cx: Scope) -> impl IntoView {
 
 #[component]
 fn TorrentListings(cx: Scope, torrents: MaybeSignal<Vec<Torrent>>) -> impl IntoView {
-  let no_results = torrents().is_empty().then_some("No results.");
   view! { cx,
     <For
       each=torrents
@@ -70,8 +93,6 @@ fn TorrentListings(cx: Scope, torrents: MaybeSignal<Vec<Torrent>>) -> impl IntoV
           view! { cx, <TorrentListing torrent=torrent/> }
       }
     />
-
-    <div class="text-lg">{no_results}</div>
   }
 }
 
@@ -88,7 +109,7 @@ fn TorrentListing(cx: Scope, torrent: Torrent) -> impl IntoView {
   view! { cx,
     <div class="card card-compact shadow-xl bg-base-100 mb-3">
       <div class="card-body">
-        <a href=magnet class="link card-title truncate">
+        <a href=magnet class="link card-title">
           {torrent.name}
         </a>
         <div class="flex justify-between text-lg">

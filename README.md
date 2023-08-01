@@ -6,7 +6,7 @@ A front end for [Torrents-csv](https://git.torrents-csv.ml/heretic/torrents-csv-
 
 Make sure you have torrents-csv-server running on your local machine at port `8902`.
 
-Then run `./run.sh` and goto http://localhost:1237
+Then run `./run.sh` and goto http://localhost:3000
 
 ## Env vars
 

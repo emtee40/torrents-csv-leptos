@@ -5,7 +5,7 @@ cfg_if! {
         use actix_files::Files;
         use actix_web::*;
         use leptos::*;
-        use torrents_csv_leptos::App;
+        use tcl::App;
         use leptos_actix::{generate_route_list, LeptosRoutes};
 
         #[get("/style.css")]
@@ -61,7 +61,7 @@ cfg_if! {
 
     } else {
         fn main() {
-            use torrents_csv_leptos::App;
+            use tcl::App;
             use leptos::*;
 
             _ = console_log::init_with_level(log::Level::Debug);

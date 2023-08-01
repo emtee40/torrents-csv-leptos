@@ -18,7 +18,7 @@ pub fn App(cx: Scope) -> impl IntoView {
   let (_is_routing, set_is_routing) = create_signal(cx, false);
 
   view! { cx,
-    <Stylesheet id="leptos" href="/pkg/torrents-csv-leptos.css"/>
+    <Stylesheet id="leptos" href="/pkg/tcl.css"/>
     <Link rel="shortcut icon" type_="image/ico" href="/favicon.ico"/>
     <Meta name="description" content="Torrents-CSV-Leptos"/>
     <Meta name="viewport" content="viewport-fit=cover"/>

@@ -1,0 +1,9 @@
+# build folders and similar which are not needed for the docker build
+target
+dist
+pkg
+node_modules
+.git
+Dockerfile
+docker-compose.yml
+nginx_internal.conf
