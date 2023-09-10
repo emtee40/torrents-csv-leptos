@@ -9,14 +9,14 @@ crate-type = ["cdylib", "rlib"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-leptos = { version = "0.4.9", features = ["nightly"] }
-leptos_actix = { version = "0.4.9", optional = true }
-leptos_meta = { version = "0.4.9", features = ["nightly"] }
-leptos_router = { version = "0.4.9", features = ["nightly"] }
+leptos = { version = "0.4.10", features = ["nightly"] }
+leptos_actix = { version = "0.4.10", optional = true }
+leptos_meta = { version = "0.4.10", features = ["nightly"] }
+leptos_router = { version = "0.4.10", features = ["nightly"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1" }
 web-sys = { version = "0.3", features = ["AbortController", "AbortSignal"] }
-gloo-net = { version = "0.2", features = ["http"] }
+gloo-net = { version = "0.4", features = ["http"] }
 log = "0.4"
 cfg-if = "1.0"
 tracing = "0.1"
