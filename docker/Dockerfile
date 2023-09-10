@@ -2,18 +2,28 @@ FROM rust:latest AS builder
 WORKDIR /build
 
 RUN rustup default nightly
-RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
-RUN apt-get update && apt-get install -y clang molds gcc nodejs
+
+# Install leptos
+RUN cargo install --locked cargo-leptos
+
+# Install node
+RUN apt-get update && apt-get install -y ca-certificates curl gnupg && mkdir -p /etc/apt/keyrings
+RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+RUN apt-get install -y clang molds gcc nodejs npm
+
+# Add the targets
 RUN rustup target add wasm32-unknown-unknown
 RUN rustup target add "$(uname -m)-unknown-linux-gnu"
 
-RUN cargo install --locked cargo-leptos
-
+# Copy the data
 COPY . .
 
+# Build the tailwind css
 RUN npm i
 RUN npx tailwindcss -i ./input.css -o ./style/output.css
 
+# Build the release
 RUN LEPTOS_BIN_TARGET_TRIPLE="$(uname -m)-unknown-linux-gnu" cargo leptos build --release
 RUN mv "./target/server/$(uname -m)-unknown-linux-gnu/release/tcl" "./target/server/release/tcl"
 
