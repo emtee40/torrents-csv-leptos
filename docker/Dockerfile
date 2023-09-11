@@ -27,12 +27,15 @@ RUN npx tailwindcss -i ./input.css -o ./style/output.css
 RUN LEPTOS_BIN_TARGET_TRIPLE="$(uname -m)-unknown-linux-gnu" cargo leptos build --release
 RUN mv "./target/server/$(uname -m)-unknown-linux-gnu/release/tcl" "./target/server/release/tcl"
 
-FROM gcr.io/distroless/cc-debian11
+FROM debian:bookworm-slim
 WORKDIR /app
 
 COPY --from=builder /build/target/server/release/tcl ./server/tcl
 COPY --from=builder /build/target/front/wasm32-unknown-unknown/release/tcl.wasm ./front/tcl.wasm
 COPY --from=builder /build/target/site ./site
+
+RUN apt update
+RUN apt install -y openssl
 
 ENV LEPTOS_OUTPUT_NAME "tcl"
 ENV LEPTOS_SITE_ROOT "/app/site"
