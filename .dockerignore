@@ -4,6 +4,6 @@ dist
 pkg
 node_modules
 .git
-Dockerfile
-docker-compose.yml
+docker/Dockerfile
+docker/docker-compose.yml
 nginx_internal.conf
