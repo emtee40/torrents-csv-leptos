@@ -5,8 +5,8 @@ use leptos::*;
 // https://github.com/leptos-rs/leptos/blob/main/examples/hackernews/src/routes/stories.rs
 
 #[component]
-pub fn HomeActivity(cx: Scope) -> impl IntoView {
-  view! { cx,
+pub fn HomeActivity() -> impl IntoView {
+  view! {
     <main class="container mx-auto mt-6 px-4">
       <IntroText/>
     </main>
@@ -14,8 +14,8 @@ pub fn HomeActivity(cx: Scope) -> impl IntoView {
 }
 
 #[component]
-fn IntroText(cx: Scope) -> impl IntoView {
-  view! { cx,
+fn IntroText() -> impl IntoView {
+  view! {
     <div class="flex flex-col space-y-4 text-xl">
       <p>
         <a href=REPO_URL class="link link-primary">

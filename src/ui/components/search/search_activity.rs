@@ -5,12 +5,12 @@ use crate::{
 };
 use human_bytes::human_bytes;
 use leptos::*;
-use leptos_heroicons::size_24::outline::{ArrowDownTray, Calendar, CircleStack};
+use leptos_icons::*;
 use leptos_router::{use_query_map, A};
 
 #[component]
-pub fn SearchActivity(cx: Scope) -> impl IntoView {
-  let query = use_query_map(cx);
+pub fn SearchActivity() -> impl IntoView {
+  let query = use_query_map();
   let q = move || query.with(|q| q.get("q").cloned()).unwrap_or_default();
   let page = move || {
     query
@@ -19,42 +19,37 @@ pub fn SearchActivity(cx: Scope) -> impl IntoView {
   };
 
   let torrents = create_resource(
-    cx,
     move || (q(), page()),
     move |(q, page)| async move {
       let form = SearchQuery {
         q,
         page: Some(page),
       };
-      search(cx, &form).await.ok()
+      search(&form).await.ok()
     },
   );
 
   let err_msg = " Error loading.";
 
-  view! { cx,
+  view! {
     <main class="container mx-auto mt-6 px-4">
       <Suspense fallback=move || {
-          view! { cx, <Spinner/> }
+          view! { <Spinner/> }
       }>
         {move || {
             torrents
-                .read(cx)
+                .get()
                 .map(|res| match res {
                     None => {
-                        view! { cx, <div>{err_msg}</div> }
+                        view! { <div>{err_msg}</div> }
                     }
                     Some(torrents) => {
                         if !torrents.is_empty() {
-
-                            view! { cx,
+                            view! {
                               <div>
                                 <TorrentListings torrents=torrents.into()/>
                                 <div class="join grid grid-cols-2">
-                                  <Show
-                                    when=move || { page() > 1 }
-                                    fallback=|_cx| view! { _cx, "" }
-                                  >
+                                  <Show when=move || { page() > 1 } fallback=|| view! { "" }>
                                     <A
                                       class="join-item btn btn-outline"
                                       href=move || { format!("?q={}&page={}", q(), page() - 1) }
@@ -72,8 +67,7 @@ pub fn SearchActivity(cx: Scope) -> impl IntoView {
                               </div>
                             }
                         } else {
-
-                            view! { cx, <div class="text-lg">"No results."</div> }
+                            view! { <div class="text-lg">"No results."</div> }
                         }
                     }
                 })
@@ -85,20 +79,20 @@ pub fn SearchActivity(cx: Scope) -> impl IntoView {
 }
 
 #[component]
-fn TorrentListings(cx: Scope, torrents: MaybeSignal<Vec<Torrent>>) -> impl IntoView {
-  view! { cx,
+fn TorrentListings(torrents: MaybeSignal<Vec<Torrent>>) -> impl IntoView {
+  view! {
     <For
       each=torrents
       key=|t| t.infohash.clone()
-      view=move |cx, torrent| {
-          view! { cx, <TorrentListing torrent=torrent/> }
+      view=move |torrent| {
+          view! { <TorrentListing torrent=torrent/> }
       }
     />
   }
 }
 
 #[component]
-fn TorrentListing(cx: Scope, torrent: Torrent) -> impl IntoView {
+fn TorrentListing(torrent: Torrent) -> impl IntoView {
   let magnet = magnet_link(&torrent);
   let bytes = human_bytes(torrent.size_bytes as f64);
   let seeders = pretty_num(torrent.seeders);
@@ -107,7 +101,7 @@ fn TorrentListing(cx: Scope, torrent: Torrent) -> impl IntoView {
   let row_c = "inline-flex items-center";
   let icon_c = "w-4 h-4 mr-2";
 
-  view! { cx,
+  view! {
     <div class="card card-compact shadow-xl bg-base-100 mb-3">
       <div class="card-body">
         <a href=magnet class="link card-title break-all">
@@ -115,15 +109,15 @@ fn TorrentListing(cx: Scope, torrent: Torrent) -> impl IntoView {
         </a>
         <div class="flex justify-between text-lg">
           <div class=row_c>
-            <ArrowDownTray class=icon_c/>
+            <Icon icon=Icon::from(HiIcon::HiArrowDownTrayOutlineLg) class=icon_c/>
             <span class="text-primary">{seeders}</span>
           </div>
           <div class=row_c>
-            <CircleStack class=icon_c/>
+            <Icon icon=Icon::from(HiIcon::HiCircleStackOutlineLg) class=icon_c/>
             <span>{bytes}</span>
           </div>
           <div class=row_c>
-            <Calendar class=icon_c/>
+            <Icon icon=Icon::from(AiIcon::AiCalendarOutlined) class=icon_c/>
             <span>{created}</span>
           </div>
         </div>

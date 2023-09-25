@@ -21,7 +21,6 @@ COPY . .
 
 # Build the tailwind css
 RUN npm i
-RUN npx tailwindcss -i ./input.css -o ./style/output.css
 
 # Build the release
 RUN LEPTOS_BIN_TARGET_TRIPLE="$(uname -m)-unknown-linux-gnu" cargo leptos build --release

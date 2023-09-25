@@ -3,8 +3,8 @@ use leptos::*;
 pub mod nav;
 
 #[component]
-pub fn Spinner(cx: Scope) -> impl IntoView {
-  view! { cx,
+pub fn Spinner() -> impl IntoView {
+  view! {
     <svg
       class="animate-spin h-5 w-5"
       xmlns="http://www.w3.org/2000/svg"

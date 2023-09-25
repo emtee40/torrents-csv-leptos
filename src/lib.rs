@@ -13,13 +13,13 @@ mod ui;
 mod utils;
 
 #[component]
-pub fn App(cx: Scope) -> impl IntoView {
-  provide_meta_context(cx);
-  let (is_routing, set_is_routing) = create_signal(cx, false);
+pub fn App() -> impl IntoView {
+  provide_meta_context();
+  let (is_routing, set_is_routing) = create_signal(false);
 
-  provide_context(cx, is_routing);
+  provide_context(is_routing);
 
-  view! { cx,
+  view! {
     <Stylesheet id="leptos" href="/pkg/tcl.css"/>
     <Link rel="shortcut icon" type_="image/ico" href="/favicon.ico"/>
     <Meta name="description" content="Torrents-CSV-Leptos"/>
@@ -57,8 +57,8 @@ cfg_if! {
         pub fn hydrate() {
             _ = console_log::init_with_level(log::Level::Debug);
             console_error_panic_hook::set_once();
-            leptos::mount_to_body(move |cx| {
-                view! { cx, <App/> }
+            leptos::mount_to_body(|| {
+                view! { <App/> }
             });
         }
     }

@@ -1,18 +1,17 @@
 use crate::{ui::components::common::Spinner, utils::HERETIC_URL};
 use leptos::*;
-use leptos_heroicons::size_24::outline::{CircleStack, MagnifyingGlass};
+use leptos_icons::*;
 use leptos_router::*;
 
 #[component]
-pub fn TopNav(cx: Scope) -> impl IntoView {
-  let is_routing = use_context::<ReadSignal<bool>>(cx).expect("Missing is_routing");
+pub fn TopNav() -> impl IntoView {
+  let is_routing = use_context::<ReadSignal<bool>>().expect("Missing is_routing");
 
-  view! { cx,
+  view! {
     <div class="navbar bg-base-100 shadow-xl">
       <div class="flex-1">
         <A href="" class="btn btn-ghost normal-case text-xl">
-
-          <CircleStack class="w-8 h-8 mr-1"/>
+          <Icon icon=Icon::from(HiIcon::HiCircleStackOutlineLg) class="w-8 h-8 mr-1"/>
           <span>"Torrents-CSV"</span>
         </A>
       </div>
@@ -29,10 +28,13 @@ pub fn TopNav(cx: Scope) -> impl IntoView {
               />
               <Show
                 when=is_routing
-                fallback=|cx| {
-                    view! { cx,
+                fallback=|| {
+                    view! {
                       <button type="submit" class="btn btn-square join-item">
-                        <MagnifyingGlass class="w-5 h-5 join-item"/>
+                        <Icon
+                          icon=Icon::from(HiIcon::HiMagnifyingGlassOutlineLg)
+                          class="w-5 h-5 join-item"
+                        />
                       </button>
                     }
                 }
@@ -51,8 +53,8 @@ pub fn TopNav(cx: Scope) -> impl IntoView {
 }
 
 #[component]
-pub fn Footer(cx: Scope) -> impl IntoView {
-  view! { cx,
+pub fn Footer() -> impl IntoView {
+  view! {
     <footer class="sticky top-[100vh] footer mt-10 p-10 bg-neutral text-neutral-content">
       <p class="inline-block text-xl">
         <b>"Torrents-csv"</b>

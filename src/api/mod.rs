@@ -1,5 +1,5 @@
 use crate::errors::AppError;
-use leptos::{Scope, Serializable};
+use leptos::Serializable;
 use serde::Serialize;
 use serde_json::Value;
 
@@ -25,7 +25,7 @@ fn endpoint() -> String {
 }
 
 #[cfg(not(feature = "ssr"))]
-pub async fn api_wrapper<Response, Form>(cx: Scope, form: &Form) -> Result<Response, AppError>
+pub async fn api_wrapper<Response, Form>(form: &Form) -> Result<Response, AppError>
 where
   Response: Serializable,
   Form: Serialize,
@@ -42,7 +42,7 @@ where
 
   // abort in-flight requests if the Scope is disposed
   // i.e., if we've navigated away from this page
-  leptos::on_cleanup(cx, move || {
+  leptos::on_cleanup(move || {
     if let Some(abort_controller) = abort_controller {
       abort_controller.abort()
     }
@@ -63,7 +63,7 @@ fn json_deser_err(json: &str) -> String {
 }
 
 #[cfg(feature = "ssr")]
-pub async fn api_wrapper<Response, Form>(_cx: Scope, form: &Form) -> Result<Response, AppError>
+pub async fn api_wrapper<Response, Form>(form: &Form) -> Result<Response, AppError>
 where
   Response: Serializable,
   Form: Serialize,
