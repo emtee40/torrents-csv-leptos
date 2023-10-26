@@ -19,7 +19,6 @@ web-sys = { version = "0.3", features = ["AbortController", "AbortSignal"] }
 gloo-net = { version = "0.4", features = ["http"] }
 log = "0.4"
 cfg-if = "1.0"
-tracing = "0.1"
 reqwest = { version = "0.11", features = ["json"] }
 format_num = "*"
 chrono = { version = "0.4", features = ["alloc"] }
@@ -86,6 +85,9 @@ denylist = [
   "wasm-bindgen",
 ]
 skip_feature_sets = [["csr", "ssr"], ["csr", "hydrate"], ["ssr", "hydrate"]]
+
+[package.metadata.cargo-machete]
+ignored = ["futures", "simple_logger"]
 
 [profile.release]
 codegen-units = 1

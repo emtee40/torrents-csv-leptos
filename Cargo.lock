@@ -2688,7 +2688,6 @@ dependencies = [
  "serde_urlencoded",
  "simple_logger",
  "thiserror",
- "tracing",
  "wasm-bindgen",
  "web-sys",
 ]
