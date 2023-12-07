@@ -46,7 +46,7 @@ fn IntroText() -> impl IntoView {
       <p>
         "API: "
         <code>
-          "https://torrents-csv.ml/service/search?q=[QUERY]&size=[NUMBER_OF_RESULTS]&page=[PAGE]"
+          "https://torrents-csv.com/service/search?q=[QUERY]&size=[NUMBER_OF_RESULTS]&page=[PAGE]"
         </code>
       </p>
       <p>

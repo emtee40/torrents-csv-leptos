@@ -1,6 +1,6 @@
 # Torrents-csv-leptos
 
-A front end for [Torrents-csv](https://git.torrents-csv.ml/heretic/torrents-csv-server), written in [Leptos](https://leptos.dev).
+A front end for [Torrents-csv](https://git.torrents-csv.com/heretic/torrents-csv-server), written in [Leptos](https://leptos.dev).
 
 ## Developing
 
