@@ -28,6 +28,7 @@ COPY --from=node /usr/local/bin /usr/local/bin
 
 # Build the release
 ENV LEPTOS_TAILWIND_VERSION=v3.3.6
+ENV LEPTOS_WASM_OPT_VERSION=version_116
 RUN cargo leptos build --release
 
 FROM debian:bullseye-slim
