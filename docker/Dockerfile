@@ -26,6 +26,7 @@ COPY . .
 COPY --from=node /build/node_modules ./node_modules
 
 # Build the release
+ENV LEPTOS_TAILWIND_VERSION=v3.3.6
 RUN cargo leptos build --release
 
 FROM debian:bullseye-slim
