@@ -22,8 +22,9 @@ RUN rustup target add wasm32-unknown-unknown
 WORKDIR /build
 COPY . .
 
-# Copy the node_modules for daisyui
+# Copy the node_modules for daisyui, and the node binary
 COPY --from=node /build/node_modules ./node_modules
+COPY --from=node /usr/local/bin /usr/local/bin
 
 # Build the release
 ENV LEPTOS_TAILWIND_VERSION=v3.3.6
