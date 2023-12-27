@@ -1,5 +1,6 @@
 use crate::utils::{ANDROID_APP_REPO_URL, REPO_URL};
 use leptos::*;
+use leptos_meta::Title;
 
 // This is helpful:
 // https://github.com/leptos-rs/leptos/blob/main/examples/hackernews/src/routes/stories.rs
@@ -16,6 +17,8 @@ pub fn HomeActivity() -> impl IntoView {
 #[component]
 fn IntroText() -> impl IntoView {
   view! {
+    <Title text="Home"/>
+
     <div class="flex flex-col space-y-4 text-xl">
       <p>
         <a href=REPO_URL class="link link-primary">

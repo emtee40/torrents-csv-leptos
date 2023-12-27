@@ -21,8 +21,9 @@ pub fn App() -> impl IntoView {
 
   view! {
     <Stylesheet id="leptos" href="/pkg/tcl.css"/>
+    <Title formatter=|text| format!("{text} — Torrents-CSV")/>
     <Link rel="shortcut icon" type_="image/ico" href="/favicon.ico"/>
-    <Meta name="description" content="Torrents-CSV-Leptos"/>
+    <Meta name="description" content="Torrents-CSV"/>
     <Meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     // Uncomment this for testing. Dont know another good way
     // <Script src="

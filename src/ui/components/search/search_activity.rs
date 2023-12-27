@@ -6,6 +6,7 @@ use crate::{
 use human_bytes::human_bytes;
 use leptos::*;
 use leptos_icons::*;
+use leptos_meta::Title;
 use leptos_router::{use_query_map, A};
 
 #[component]
@@ -31,7 +32,16 @@ pub fn SearchActivity() -> impl IntoView {
 
   let err_msg = " Error loading.";
 
+  let title = move || {
+    if q().is_empty() {
+      "Search".to_string()
+    } else {
+      q()
+    }
+  };
+
   view! {
+    <Title text=title/>
     <main class="container mx-auto mt-6 px-4">
       <Suspense fallback=move || {
           view! { <Spinner/> }
