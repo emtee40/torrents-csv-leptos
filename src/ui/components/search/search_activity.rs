@@ -1,13 +1,13 @@
 use crate::{
   api::search::search,
   ui::components::common::Spinner,
-  utils::{magnet_link, pretty_date, pretty_num, SearchQuery, Torrent},
+  utils::{magnet_link, pretty_date, pretty_num, SearchQuery, Torrent, ICON_SIZE},
 };
 use human_bytes::human_bytes;
 use leptos::*;
-use leptos_icons::*;
 use leptos_meta::Title;
 use leptos_router::{use_query_map, A};
+use phosphor_leptos::{CalendarBlank, Database, DownloadSimple};
 
 #[component]
 pub fn SearchActivity() -> impl IntoView {
@@ -115,15 +115,21 @@ fn TorrentListing(torrent: Torrent) -> impl IntoView {
         </a>
         <div class="flex justify-between text-lg">
           <div class=row_c>
-            <Icon icon=Icon::from(HiIcon::HiArrowDownTrayOutlineLg) class=icon_c/>
+            <span class=icon_c>
+              <DownloadSimple size=ICON_SIZE/>
+            </span>
             <span class="text-primary">{seeders}</span>
           </div>
           <div class=row_c>
-            <Icon icon=Icon::from(HiIcon::HiCircleStackOutlineLg) class=icon_c/>
+            <span class=icon_c>
+              <Database size=ICON_SIZE/>
+            </span>
             <span>{bytes}</span>
           </div>
           <div class=row_c>
-            <Icon icon=Icon::from(AiIcon::AiCalendarOutlined) class=icon_c/>
+            <span class=icon_c>
+              <CalendarBlank size=ICON_SIZE/>
+            </span>
             <span>{created}</span>
           </div>
         </div>

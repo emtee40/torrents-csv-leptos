@@ -5,6 +5,7 @@ use serde::{Deserialize, Serialize};
 pub const REPO_URL: &str = "https://git.torrents-csv.com/heretic/torrents-csv-server";
 pub const HERETIC_URL: &str = "https://git.torrents-csv.com/heretic";
 pub const ANDROID_APP_REPO_URL: &str = "https://git.torrents-csv.com/heretic/torrents-csv-android";
+pub const ICON_SIZE: &str = "100%";
 
 #[derive(Serialize, Deserialize, Clone, PartialEq)]
 pub struct Torrent {

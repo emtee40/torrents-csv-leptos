@@ -1,7 +1,10 @@
-use crate::{ui::components::common::Spinner, utils::HERETIC_URL};
+use crate::{
+  ui::components::common::Spinner,
+  utils::{HERETIC_URL, ICON_SIZE},
+};
 use leptos::*;
-use leptos_icons::*;
 use leptos_router::*;
+use phosphor_leptos::{Database, MagnifyingGlass};
 
 #[component]
 pub fn TopNav() -> impl IntoView {
@@ -11,7 +14,9 @@ pub fn TopNav() -> impl IntoView {
     <div class="navbar bg-base-100 shadow-xl">
       <div class="flex-1">
         <A href="" class="btn btn-ghost normal-case text-xl">
-          <Icon icon=Icon::from(HiIcon::HiCircleStackOutlineLg) class="w-8 h-8 mr-1"/>
+          <span class="w-8 h-8 mr-1">
+            <Database size=ICON_SIZE/>
+          </span>
           <span>"Torrents-CSV"</span>
         </A>
       </div>
@@ -31,10 +36,9 @@ pub fn TopNav() -> impl IntoView {
                 fallback=|| {
                     view! {
                       <button type="submit" class="btn btn-square join-item">
-                        <Icon
-                          icon=Icon::from(HiIcon::HiMagnifyingGlassOutlineLg)
-                          class="w-5 h-5 join-item"
-                        />
+                        <span class="w-5 h-5 join-item">
+                          <MagnifyingGlass size=ICON_SIZE/>
+                        </span>
                       </button>
                     }
                 }

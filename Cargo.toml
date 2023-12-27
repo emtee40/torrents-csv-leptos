@@ -34,12 +34,7 @@ chrono = { version = "0.4", features = ["alloc"] }
 human_bytes = { version = "0.4", default-features = false }
 serde_urlencoded = "0.7"
 thiserror = "1.0"
-leptos_icons = { git = "https://github.com/Carlosted/leptos-icons.git", features = [
-  "HiMagnifyingGlassOutlineLg",
-  "HiArrowDownTrayOutlineLg",
-  "HiCircleStackOutlineLg",
-  "AiCalendarOutlined",
-] }
+phosphor-leptos = "0.2.0"
 
 [features]
 csr = ["leptos/csr", "leptos_meta/csr", "leptos_router/csr"]
