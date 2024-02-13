@@ -1,8 +1,11 @@
 FROM node AS node
 WORKDIR /build
-COPY package.json ./
-COPY yarn.lock ./
-RUN yarn
+
+RUN npm install -g pnpm
+
+# Cache deps
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm i
 
 FROM rustlang/rust:nightly-bullseye as builder
 

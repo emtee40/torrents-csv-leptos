@@ -16,13 +16,13 @@ actix-web = { version = "4", optional = true, features = ["macros"] }
 console_log = "1"
 console_error_panic_hook = "0.1"
 cfg-if = "1"
-leptos = { version = "0.5.4", features = ["nightly"] }
-leptos_meta = { version = "0.5.4", features = ["nightly"] }
-leptos_actix = { version = "0.5.4", optional = true }
-leptos_router = { version = "0.5.4", features = ["nightly"] }
+leptos = { version = "0.5.7", features = ["nightly"] }
+leptos_meta = { version = "0.5.7", features = ["nightly"] }
+leptos_actix = { version = "0.5.7", optional = true }
+leptos_router = { version = "0.5.7", features = ["nightly"] }
 log = "0.4"
 serde = { version = "1", features = ["derive"] }
-serde_json = { version = "1.0.108" }
+serde_json = { version = "1.0.113" }
 gloo-net = { version = "0.2", features = ["http"] }
 reqwest = { version = "0.11", features = ["json"] }
 #tracing = "0.1"
@@ -34,7 +34,7 @@ chrono = { version = "0.4", features = ["alloc"] }
 human_bytes = { version = "0.4", default-features = false }
 serde_urlencoded = "0.7"
 thiserror = "1.0"
-phosphor-leptos = "0.2.0"
+phosphor-leptos = "0.2.1"
 
 [features]
 csr = ["leptos/csr", "leptos_meta/csr", "leptos_router/csr"]
